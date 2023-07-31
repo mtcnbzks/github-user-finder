@@ -67,9 +67,13 @@ export default function Home() {
         <div className="bold text-2xl">
           {userInfo && <UserCard key={userInfo.id} userInfo={userInfo} />}
           <h1 className="ml-8">Repositories:</h1>
-          {repos.map((repo) => (
-            <RepoCard key={repo.id} repoInfo={repo} />
-          ))}
+          {repos
+            .sort((a, b) => {
+              return b.stargazers_count - a.stargazers_count;
+            })
+            .map((repo) => (
+              <RepoCard key={repo.id} repoInfo={repo} />
+            ))}
         </div>
       )}
     </>
