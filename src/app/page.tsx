@@ -7,20 +7,20 @@ import UserCard, { User } from "@/components/UserCard";
 import RepoCard, { Repo } from "@/components/RepoCard";
 
 export default function Home() {
-  window.onload = function () {
+  useEffect(() => {
     document.getElementById("usernameInput")?.focus();
-  };
+  });
 
   const [usernameQuery, setUsernameQuery] = useState<string>("");
   const [userInfo, setUserInfo] = useState<User>();
   const [repos, setRepos] = useState<Repo[]>();
 
-  const usernameInput = document.getElementById("usernameInput");
-
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (usernameInput?.getAttribute("value") === "") {
+    if (
+      document.getElementById("usernameInput")?.getAttribute("value") === ""
+    ) {
       alert("Please enter a username!");
       return;
     }
